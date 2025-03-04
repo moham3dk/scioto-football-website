@@ -1,5 +1,5 @@
 "use client";
-import { link } from "fs";
+import Link from "next/link";
 import React, { useState } from "react";
 import { FaInstagram, FaFacebook, FaTwitter } from "react-icons/fa";
 import { LiaTimesSolid, LiaBarsSolid } from "react-icons/lia";
@@ -13,23 +13,31 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "HOME", href: "#" },
-    { name: "ALUMNI", href: "#" },
-    { name: "SPONSORS", href: "#" },
+    { name: "ABOUT", href: "#" },
+    { name: "HISTORY", href: "#" },
+    { name: "ROSTER", href: "#" },
+    { name: "COACHES", href: "#" },
+    { name: "SCHEDULE", href: "#" },
+    { name: "STADIUM", href: "#" },
+    { name: "MEDIA", href: "#" },
+    { name: "SHOP", href: "#" },
     { name: "LINKS", href: "#" },
     { name: "CONTACT", href: "#" },
   ];
 
   return (
     <nav>
-      <div className="flex justify-center items-center h-16 md:h-10 bg-white text-black relative font-oswald text-center">
+      <div className="flex justify-center items-center h-16 md:h-12 bg-white text-black relative font-oswald text-center">
         <div className="flex justify-between items-center w-[65%]">
-          <div className="flex space-x-4">
-            <img src="/images/logo.png" alt="logo" className="h-8 w-8" />
-            <h1 className="text-xl font-normal font-oswald text-[#014321]">
-              SCIOTO FOOTBALL
-            </h1>
-          </div>
-          <h2 className="hidden md:block text-md font-normal text-[#014321]">
+          <Link href="/">
+            <div className="flex space-x-4">
+              <img src="/images/logo.png" alt="logo" className="h-8 w-8" />
+              <h1 className="text-2xl font-normal font-oswald text-[#014321]">
+                SCIOTO FOOTBALL
+              </h1>
+            </div>
+          </Link>
+          <h2 className="hidden md:block text-lg font-normal text-[#014321]">
             TRUST - COMMITMENT - LOVE - BELIEF
           </h2>
           <div className="md:hidden flex items-center">
@@ -46,20 +54,29 @@ export default function Navbar() {
               <a
                 key={link.name}
                 href={link.href}
-                className="text-md font-normal"
+                className="text-lg font-normal hover:text-gray-400 transition-colors duration-300"
               >
                 {link.name}
               </a>
             ))}
           </div>
           <div className="flex space-x-4">
-            <a href="#" className="text-2xl md:text-4xl font-normal">
+            <a
+              href="#"
+              className="text-2xl md:text-4xl font-normal hover:text-gray-400 transition-colors duration-300"
+            >
               <FaInstagram />
             </a>
-            <a href="#" className="text-2xl md:text-4xl font-normal">
+            <a
+              href="#"
+              className="text-2xl md:text-4xl font-normal hover:text-gray-400 transition-colors duration-300"
+            >
               <FaFacebook />
             </a>
-            <a href="#" className="text-2xl md:text-4xl font-normal">
+            <a
+              href="#"
+              className="text-2xl md:text-4xl font-normal hover:text-gray-400 transition-colors duration-300"
+            >
               <FaTwitter />
             </a>
           </div>
@@ -67,7 +84,7 @@ export default function Navbar() {
       </div>
       {/* Mobile Menu */}
       <div
-        className={`md:hidden absolute top-0 w-screen h-screen bg-[#014321] text-white text-center transition-all ease-in-out duration-300 ${
+        className={`md:hidden z-50 fixed top-0 w-screen h-screen bg-[#014321] text-white text-center transition-all ease-in-out duration-300 ${
           isOpen ? "left-0" : "-left-full"
         }`}
       >
@@ -78,7 +95,11 @@ export default function Navbar() {
         </div>
         <div className="flex flex-col space-y-12 items-center justify-center h-[75%]">
           {navLinks.map((link) => (
-            <a key={link.name} href={link.href} className="text-xl font-normal font-oswald">
+            <a
+              key={link.name}
+              href={link.href}
+              className="text-xl font-normal font-oswald hover:text-green-950 transition-colors duration-300"
+            >
               {link.name}
             </a>
           ))}
