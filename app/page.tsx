@@ -41,11 +41,11 @@ export default function Home() {
     fetchSponsors();
     fetchAnnouncements();
   }, []);
+
   return (
-    <div className="bg-white min-h-screen">
+    <div className="bg-white min-h-screen max-w-screen">
       {/* Hero Section */}
       <div className="h-96 flex justify-center items-center relative overflow-hidden">
-        {/* Background Image */}
         <div className="absolute inset-0 w-full h-full">
           <Image
             src="/images/team.jpeg"
@@ -58,7 +58,6 @@ export default function Home() {
           <div className="absolute inset-0 backdrop-filter backdrop-blur-md bg-black/30"></div>
         </div>
 
-        {/* Content */}
         <div className="z-10 text-center space-y-4 px-4">
           <h1 className="font-oswald text-white text-4xl md:text-5xl uppercase tracking-wide">
             Dublin Scioto High School Football
@@ -67,7 +66,6 @@ export default function Home() {
             Home of the Irish
           </p>
 
-          {/* Buttons */}
           <div className="flex justify-center gap-4 mt-6">
             <Link
               href="/tickets"
@@ -84,9 +82,9 @@ export default function Home() {
           </div>
         </div>
       </div>
-      {/* Announcements Section */}
-      <div className="flex flex-col w-full py-12">
-        <h2 className="text-3xl font-oswald text-[#014321] text-center">
+      {/* Announcements */}
+      <div className="flex flex-col w-full py-8 bg-white items-center">
+        <h2 className="text-3xl font-oswald text-[#014321] text-center mb-6">
           ANNOUNCEMENTS
         </h2>
         {announcementsLoading ? (
@@ -98,63 +96,78 @@ export default function Home() {
             {announcementsError}
           </p>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
-            {announcements.map((announcement: any) => (
-              <div
-                key={announcement[0]}
-                className="flex flex-col justify-center items-center p-4 border-2 border-[#014321] hover:shadow-lg transform hover:scale-105 transition duration-300"
-              >
-                <p className="text-[#014321] font-oswald text-lg text-center">
-                  {announcement[1]}
-                </p>
-              </div>
-            ))}
+          <div className="flex flex-wrap justify-center gap-6 w-full max-w-6xl">
+            {announcements.map(
+              (announcement: any, index: number) =>
+                announcement.length > 0 &&
+                announcement[0] != "" && 
+                announcement[3] && new Date(announcement[3]) > new Date(Date.now()) && 
+                (
+                  <div
+                    key={index}
+                    className="flex flex-col items-center p-6 border-2 border-[#014321] rounded-lg hover:shadow-lg transition duration-300 bg-white w-96 h-64"
+                  >
+                    <p className="text-[#014321] font-oswald text-lg text-center my-auto overflow-hidden whitespace-nowrap text-ellipsis w-full">
+                      {announcement[0]}
+                    </p>
+
+                    <p className="text-[#014321] font-oswald text-sm text-center mt-2 my-auto line-clamp-3">
+                      {announcement[1]}
+                    </p>
+
+                    {announcement[4] && (
+                      <a
+                        href={announcement[4]}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-4 px-6 py-2 bg-[#014321] text-white font-oswald text-sm rounded-lg hover:bg-[#012a1a] transition duration-300"
+                      >
+                        See More
+                      </a>
+                    )}
+                  </div>
+                )
+            )}
           </div>
         )}
       </div>
       {/* Sponsors */}
-      <div className="flex flex-col w-full py-12">
-        <h2 className="text-3xl font-oswald text-[#014321] text-center">
+      <div className="flex flex-col w-full py-12 bg-[#014321]">
+        <h2 className="text-3xl font-oswald text-white text-center">
           OUR SPONSORS
         </h2>
-        <p className="text-center text-lg font-normal text-[#014321] mt-4">
+        <p className="text-center text-lg font-normal text-white mt-4">
           We are grateful for the support of our sponsors. Please consider
           supporting them.
         </p>
         <div className="flex justify-center items-center mx-auto">
           {sponorsLoading ? (
             <div className="h-48 flex justify-center items-center">
-              <CgSpinner className="animate-spin h-8 w-8 text-[#014321]" />
+              <CgSpinner className="animate-spin h-8 w-8 text-white" />
             </div>
           ) : sponsorsError ? (
-            <p className="text-[#014321] font-oswald text-lg">
-              {sponsorsError}
-            </p>
+            <p className="text-white font-oswald text-lg">{sponsorsError}</p>
           ) : (
-            <Marquee gradient={false} speed={50}>
+            <Marquee gradient={false} speed={50} className="max-w-screen">
               {sponsors.map((sponsor: any) => (
                 <Link
                   target="_self"
                   href={sponsor[3] == "https://#" ? "" : sponsor[3]}
                   key={sponsor[0]}
                 >
-                  <div className="mx-4 flex flex-col items-center justify-center my-10 h-48 border-2 border-[#014321] hover:shadow-lg transform hover:scale-105 transition duration-300">
+                  <div className="flex flex-col items-center justify-center mx-4 my-10 h-48 border-2 border-white hover:shadow-lg transform hover:scale-105 transition duration-300">
                     {" "}
-                    {/* Fixed height and centered content */}
                     <div className="flex items-center justify-center h-32">
                       {" "}
-                      {/* Fixed height for image container */}
                       <Image
                         src={`/images/sponsors/${sponsor[4]}`}
                         alt={sponsor[0]}
                         width={200}
                         height={100}
-                        className="object-contain max-h-full" /* Ensure image fits within container */
+                        className="object-contain max-h-full"
                       />
                     </div>
-                    <p className="text-[#014321] font-oswald text-lg mt-2 text-center">
-                      {" "}
-                      {/* Centered text */}
+                    <p className="text-white font-oswald text-lg mt-2 text-center">
                       {sponsor[1]}
                     </p>
                   </div>

@@ -14,7 +14,6 @@ export default function Navbar() {
   const navLinks = [
     { name: "HOME", href: "#" },
     { name: "ABOUT", href: "#" },
-    { name: "HISTORY", href: "#" },
     { name: "ROSTER", href: "#" },
     { name: "COACHES", href: "#" },
     { name: "SCHEDULE", href: "#" },
@@ -93,12 +92,12 @@ export default function Navbar() {
             {isOpen ? <LiaTimesSolid /> : <LiaBarsSolid />}
           </button>
         </div>
-        <div className="flex flex-col space-y-12 items-center justify-center h-[75%]">
+        <div className="flex flex-col items-center justify- h-screen">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className="text-xl font-normal font-oswald hover:text-green-950 transition-colors duration-300"
+              className="text-xl font-normal font-oswald hover:text-green-950 transition-colors duration-300 pb-10 sm:pb-12"
             >
               {link.name}
             </a>
