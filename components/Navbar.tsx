@@ -13,7 +13,6 @@ export default function Navbar() {
 
   const navLinks = [
     { name: "HOME", href: "#" },
-    { name: "ABOUT", href: "#" },
     { name: "ROSTER", href: "#" },
     { name: "COACHES", href: "#" },
     { name: "SCHEDULE", href: "#" },
@@ -47,7 +46,7 @@ export default function Navbar() {
         </div>
       </div>
       <div className="hidden md:flex justify-center items-center h-14 bg-[#014321] text-white relative">
-        <div className="flex justify-between items-center w-[80%] lg:w-[70%]">
+        <div className="flex justify-between items-center w-[80%] lg:w-[70%] gap-6">
           <div className="flex space-x-4 font-oswald flex-wrap justify-center">
             {navLinks.map((link) => (
               <a

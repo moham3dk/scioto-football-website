@@ -100,12 +100,12 @@ export default function Home() {
             {announcements.map(
               (announcement: any, index: number) =>
                 announcement.length > 0 &&
-                announcement[0] != "" && 
-                announcement[3] && new Date(announcement[3]) > new Date(Date.now()) && 
-                (
+                announcement[0] != "" &&
+                announcement[3] &&
+                new Date(announcement[3]) > new Date(Date.now()) && (
                   <div
                     key={index}
-                    className="flex flex-col items-center p-6 border-2 border-[#014321] rounded-lg hover:shadow-lg transition duration-300 bg-white mx-4 w-96 h-64"
+                    className="flex flex-col items-center p-6 border-2 border-[#014321] hover:shadow-lg transition duration-300 bg-white mx-4 w-96 h-64"
                   >
                     <p className="text-[#014321] font-oswald text-lg text-center my-auto overflow-hidden whitespace-nowrap text-ellipsis w-full">
                       {announcement[0]}
@@ -118,9 +118,9 @@ export default function Home() {
                     {announcement[4] && (
                       <a
                         href={announcement[4]}
-                        target="_blank"
+                        target="_self"
                         rel="noopener noreferrer"
-                        className="mt-4 px-6 py-2 bg-[#014321] text-white font-oswald text-sm rounded-lg hover:bg-[#012a1a] transition duration-300"
+                        className="mt-4 px-6 py-2 bg-[#014321] text-white font-oswald text-sm hover:bg-[#012a1a] transition duration-300"
                       >
                         See More
                       </a>
