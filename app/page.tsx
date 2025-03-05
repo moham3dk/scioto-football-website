@@ -105,7 +105,7 @@ export default function Home() {
                 (
                   <div
                     key={index}
-                    className="flex flex-col items-center p-6 border-2 border-[#014321] rounded-lg hover:shadow-lg transition duration-300 bg-white w-96 h-64"
+                    className="flex flex-col items-center p-6 border-2 border-[#014321] rounded-lg hover:shadow-lg transition duration-300 bg-white mx-4 w-96 h-64"
                   >
                     <p className="text-[#014321] font-oswald text-lg text-center my-auto overflow-hidden whitespace-nowrap text-ellipsis w-full">
                       {announcement[0]}

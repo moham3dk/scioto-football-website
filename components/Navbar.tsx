@@ -29,7 +29,7 @@ export default function Navbar() {
       <div className="flex justify-center items-center h-16 md:h-12 bg-white text-black relative font-oswald text-center">
         <div className="flex justify-between items-center w-[65%]">
           <Link href="/">
-            <div className="flex space-x-4">
+            <div className="flex flex-row justfy-center items-center space-x-4">
               <img src="/images/logo.png" alt="logo" className="h-8 w-8" />
               <h1 className="text-2xl font-normal font-oswald text-[#014321]">
                 SCIOTO FOOTBALL
@@ -47,8 +47,8 @@ export default function Navbar() {
         </div>
       </div>
       <div className="hidden md:flex justify-center items-center h-14 bg-[#014321] text-white relative">
-        <div className="flex justify-between items-center w-[75%]">
-          <div className="flex space-x-4 font-oswald">
+        <div className="flex justify-between items-center w-[80%] lg:w-[70%]">
+          <div className="flex space-x-4 font-oswald flex-wrap justify-center">
             {navLinks.map((link) => (
               <a
                 key={link.name}
@@ -97,7 +97,7 @@ export default function Navbar() {
             <a
               key={link.name}
               href={link.href}
-              className="text-xl font-normal font-oswald hover:text-green-950 transition-colors duration-300 pb-10 sm:pb-12"
+              className="text-xl font-normal font-oswald hover:text-green-950 transition-colors duration-300 pb-9 sm:pb-10"
             >
               {link.name}
             </a>
