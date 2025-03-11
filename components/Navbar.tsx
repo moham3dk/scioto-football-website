@@ -12,15 +12,15 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { name: "HOME", href: "#" },
-    { name: "ROSTER", href: "#" },
-    { name: "COACHES", href: "#" },
-    { name: "SCHEDULE", href: "#" },
-    { name: "STADIUM", href: "#" },
-    { name: "MEDIA", href: "#" },
+    { name: "HOME", href: "/" },
+    { name: "ROSTER", href: "roster" },
+    { name: "COACHES", href: "coaches" },
+    { name: "SCHEDULE", href: "schedule" },
+    { name: "STADIUM", href: "stadium" },
+    { name: "MEDIA", href: "media" },
     { name: "SHOP", href: "#" },
     { name: "LINKS", href: "#" },
-    { name: "CONTACT", href: "#" },
+    { name: "CONTACT", href: "contact" },
   ];
 
   return (

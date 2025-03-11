@@ -122,7 +122,7 @@ export default function Home() {
                         rel="noopener noreferrer"
                         className="mt-4 px-6 py-2 bg-[#014321] text-white font-oswald text-sm hover:bg-[#012a1a] transition duration-300"
                       >
-                        See More
+                        SEE MORE
                       </a>
                     )}
                   </div>
@@ -176,6 +176,20 @@ export default function Home() {
             </Marquee>
           )}
         </div>
+      </div>
+      {/* Contact */}
+      <div className="flex flex-col w-full py-12 bg-white items-center">
+        <h2 className="text-3xl font-oswald text-[#014321] text-center mb-6">
+          CONTACT US
+        </h2>
+        <p className="text-[#014321] font-oswald text-lg text-center">
+          For any questions or inquiries, feel free to contact us below.
+        </p>
+        <Link href="/contact">
+          <button className="bg-[#014321] hover:bg-green-950 text-white py-2 px-8 font-oswald mt-4 transition duration-300 transform hover:scale-105">
+            CONTACT US
+          </button>
+        </Link>
       </div>
     </div>
   );
