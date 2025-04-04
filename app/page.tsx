@@ -5,6 +5,21 @@ import Link from "next/link";
 import Marquee from "react-fast-marquee";
 import { CgSpinner } from "react-icons/cg";
 import axios from "axios";
+import dynamic from "next/dynamic";
+
+// Dynamically import social media embeds with SSR disabled
+const FacebookEmbed = dynamic(
+  () => import("react-social-media-embed").then((mod) => mod.FacebookEmbed),
+  { ssr: false }
+);
+const InstagramEmbed = dynamic(
+  () => import("react-social-media-embed").then((mod) => mod.InstagramEmbed),
+  { ssr: false }
+);
+const XEmbed = dynamic(
+  () => import("react-social-media-embed").then((mod) => mod.XEmbed),
+  { ssr: false }
+);
 
 export default function Home() {
   const [sponorsLoading, setSponsorsLoading] = useState(true);
@@ -131,22 +146,63 @@ export default function Home() {
           </div>
         )}
       </div>
-      {/* Sponsors */}
+      {/* Social Media */}
       <div className="flex flex-col w-full py-12 bg-[#014321]">
         <h2 className="text-3xl font-oswald text-white text-center">
-          OUR SPONSORS
+          WHAT'S NEW
         </h2>
         <p className="text-center text-lg font-normal text-white mt-4">
+          Stay updated with the latest news and events on our social media
+          channels.
+        </p>
+        <div className="flex flex-col md:flex-row flex-wrap justify-center items-center gap-4 p-4 w-full">
+          {/* Facebook Embed */}
+          <div className="w-full md:w-[calc(33%-1rem)] min-w-[300px] max-w-[90vw] h-[500px] md:h-[700px]">
+            <FacebookEmbed
+              url="https://www.facebook.com/DublinSciotoIrishFootball/posts/107651307709133"
+              width="100%"
+              height="100%"
+            />
+          </div>
+
+          {/* Instagram Embed */}
+          <div className="w-full md:w-[calc(33%-1rem)] min-w-[300px] max-w-[90vw] h-[500px] md:h-[700px]">
+            <InstagramEmbed
+              url="https://www.instagram.com/dshsirishfootball/p/DG4BydaSGGh"
+              width="100%"
+              height="100%"
+            />
+          </div>
+
+          {/* Twitter (X) Embed */}
+          <div className="w-full md:w-[calc(33%-1rem)] min-w-[300px] max-w-[90vw] h-[500px] md:h-[700px]">
+            <XEmbed
+              url="https://x.com/sciotofootball/status/1896940453758726294"
+              width="100%"
+              height="100%"
+            />
+          </div>
+        </div>
+      </div>
+
+      {/* Sponsors */}
+      <div className="flex flex-col w-full py-12 bg-white]">
+        <h2 className="text-3xl font-oswald text-[#014321] text-center">
+          OUR SPONSORS
+        </h2>
+        <p className="text-center text-lg font-normal text-[#014321] mt-4">
           We are grateful for the support of our sponsors. Please consider
           supporting them.
         </p>
         <div className="flex justify-center items-center mx-auto">
           {sponorsLoading ? (
             <div className="h-48 flex justify-center items-center">
-              <CgSpinner className="animate-spin h-8 w-8 text-white" />
+              <CgSpinner className="animate-spin h-8 w-8 text-[#014321]" />
             </div>
           ) : sponsorsError ? (
-            <p className="text-white font-oswald text-lg">{sponsorsError}</p>
+            <p className="text-[#014321] font-oswald text-lg">
+              {sponsorsError}
+            </p>
           ) : (
             <Marquee gradient={false} speed={50} className="max-w-screen">
               {sponsors.map((sponsor: any) => (
@@ -155,7 +211,7 @@ export default function Home() {
                   href={sponsor[3] == "https://#" ? "" : sponsor[3]}
                   key={sponsor[0]}
                 >
-                  <div className="flex flex-col items-center justify-center mx-4 my-10 h-48 border-2 border-white hover:shadow-lg transform hover:scale-105 transition duration-300">
+                  <div className="flex flex-col items-center justify-center mx-4 my-10 h-48 border-2 bg-[#014321] hover:shadow-lg transform hover:scale-105 transition duration-300">
                     {" "}
                     <div className="flex items-center justify-center h-32">
                       {" "}
@@ -178,15 +234,15 @@ export default function Home() {
         </div>
       </div>
       {/* Contact */}
-      <div className="flex flex-col w-full py-12 bg-white items-center">
-        <h2 className="text-3xl font-oswald text-[#014321] text-center mb-6">
+      <div className="flex flex-col w-full py-12 bg-[#014321] items-center">
+        <h2 className="text-3xl font-oswald text-white text-center mb-6">
           CONTACT US
         </h2>
-        <p className="text-[#014321] font-oswald text-lg text-center">
+        <p className="text-white font-oswald text-lg text-center">
           For any questions or inquiries, feel free to contact us below.
         </p>
         <Link href="/contact">
-          <button className="bg-[#014321] hover:bg-green-950 text-white py-2 px-8 font-oswald mt-4 transition duration-300 transform hover:scale-105">
+          <button className="bg-white hover:bg-gray-300 text-[#014321] py-2 px-8 font-oswald mt-4 transition duration-300 transform hover:scale-105">
             CONTACT US
           </button>
         </Link>
