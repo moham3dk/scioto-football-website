@@ -18,8 +18,8 @@ export default function Navbar() {
     { name: "SCHEDULE", href: "schedule" },
     { name: "STADIUM", href: "stadium" },
     { name: "MEDIA", href: "media" },
-    { name: "SHOP", href: "#" },
-    { name: "LINKS", href: "#" },
+    { name: "SHOP", href: "https://dublin-scioto-touchdown-club.square.site/" },
+    { name: "LINKS", href: "links" },
     { name: "CONTACT", href: "contact" },
   ];
 

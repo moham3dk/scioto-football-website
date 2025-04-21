@@ -7,7 +7,6 @@ import { CgSpinner } from "react-icons/cg";
 import axios from "axios";
 import dynamic from "next/dynamic";
 
-// Dynamically import social media embeds with SSR disabled
 const FacebookEmbed = dynamic(
   () => import("react-social-media-embed").then((mod) => mod.FacebookEmbed),
   { ssr: false }
