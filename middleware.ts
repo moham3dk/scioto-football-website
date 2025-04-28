@@ -1,12 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
+import { logger } from "@/middleware/logger";
 
-export async function middleware(req: NextRequest) {
-    
-    // all middleware will go here
-  console.log("Middleware called");
+export function middleware(req: NextRequest) {
+  logger(req);
+
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: "/api/:path*",
+  matcher: ["/api/:path*"],
 };

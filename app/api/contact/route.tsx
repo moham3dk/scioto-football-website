@@ -2,15 +2,30 @@ import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import validator from "validator";
 
-const transporter = nodemailer.createTransport({
-  service: "gmail",
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASS,
-  },
-});
-
 export async function GET(request: NextRequest) {
+  const EMAIL_USER = process.env.EMAIL_USER;
+  const EMAIL_PASSWORD = process.env.EMAIL_PASSWORD;
+  const EMAIL_RECIPIENT = process.env.EMAIL_RECIPIENT;
+
+  if (!EMAIL_USER || !EMAIL_PASSWORD || !EMAIL_RECIPIENT) {
+    console.error("Missing email environment variables.");
+    return NextResponse.json(
+      {
+        success: false,
+        message: "Server email configuration error.",
+      },
+      { status: 500 }
+    );
+  }
+
+  const transporter = nodemailer.createTransport({
+    service: "gmail",
+    auth: {
+      user: EMAIL_USER,
+      pass: EMAIL_PASSWORD,
+    },
+  });
+
   try {
     const { searchParams } = new URL(request.url);
     const name = searchParams.get("name")?.trim() || "";
@@ -52,8 +67,8 @@ export async function GET(request: NextRequest) {
     const sanitizedMessage = validator.escape(message);
 
     const mailOptions = {
-      from: process.env.EMAIL_USER,
-      to: process.env.EMAIL_RECIPIENT,
+      from: EMAIL_USER,
+      to: EMAIL_RECIPIENT,
       subject: `New Contact: ${sanitizedSubject}`,
       text: `
 You have received a new message from your contact form.

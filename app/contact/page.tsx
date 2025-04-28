@@ -53,15 +53,17 @@ const Page = () => {
         </h1>
 
         {loading ? (
-          <Loading />
+          <form className="bg-white border border-[#014321] p-6 shadow-md">
+            <Loading />
+          </form>
         ) : (
           <form
             onSubmit={handleSubmit}
             className="bg-white border border-[#014321] p-6 shadow-md"
           >
             <div className="mb-4">
-              <label className="block text-[#014321] font-semibold mb-1">
-                Name
+              <label className="block text-[#014321] font-oswald mb-1">
+                NAME
               </label>
               <input
                 type="text"
@@ -75,8 +77,8 @@ const Page = () => {
             </div>
 
             <div className="mb-4">
-              <label className="block text-[#014321] font-semibold mb-1">
-                Email
+              <label className="block text-[#014321] font-oswald mb-1">
+                EMAIL
               </label>
               <input
                 type="email"
@@ -89,8 +91,8 @@ const Page = () => {
             </div>
 
             <div className="mb-4">
-              <label className="block text-[#014321] font-semibold mb-1">
-                Subject
+              <label className="block text-[#014321] font-oswald mb-1">
+                SUBJECT
               </label>
               <input
                 type="text"
@@ -103,8 +105,8 @@ const Page = () => {
             </div>
 
             <div className="mb-4">
-              <label className="block text-[#014321] font-semibold mb-1">
-                Message
+              <label className="block text-[#014321] font-oswald mb-1">
+                MESSAGE
               </label>
               <textarea
                 name="message"
@@ -117,18 +119,22 @@ const Page = () => {
               ></textarea>
             </div>
 
-            {errorMessage && <Error />}
+            {errorMessage && (
+              <div className="text-red-600 mb-4 font-oswald uppercase">
+                <p>{errorMessage}</p>
+              </div>
+            )}
             {successMessage && (
-              <div className="text-green-600 mb-4 font-medium">
+              <div className="text-green-600 mb-4 font-oswald uppercase">
                 {successMessage}
               </div>
             )}
 
             <button
               type="submit"
-              className="w-full bg-[#014321] text-white py-2 hover:bg-[#026937] transition"
+              className="w-full bg-[#014321] text-white font-oswald py-2 hover:bg-[#026937] transition"
             >
-              Send Message
+              SEND MESSAGE
             </button>
           </form>
         )}

@@ -62,7 +62,7 @@ const Page = () => {
           STADIUM
         </h1>
 
-        <Marquee pauseOnHover speed={50} gradient={false} className="mb-10">
+        <Marquee speed={50} gradient={false} className="mb-10">
           {images.map((image, index) => (
             <div
               key={index}
@@ -74,7 +74,7 @@ const Page = () => {
                 alt={image.alt}
                 width={300}
                 height={200}
-                className="object-cover hover:scale-105 transition-transform duration-300"
+                className="object-cover hover:scale-105 transition-transform duration-300 border-2 border-[#014321]"
               />
             </div>
           ))}
@@ -107,7 +107,7 @@ const Page = () => {
                 alt="Full view"
                 width={1200}
                 height={800}
-                className="object-contain w-full max-h-[80vh] mx-auto"
+                className="object-contain w-full max-h-[80vh] mx-auto border-2 border-[#014321]"  
               />
               <button
                 onClick={() => setSelectedImage(null)}

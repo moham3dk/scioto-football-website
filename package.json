@@ -12,6 +12,7 @@
     "@types/nodemailer": "^6.4.17",
     "@types/validator": "^13.15.0",
     "axios": "^1.8.1",
+    "express-rate-limit": "^7.5.0",
     "next": "^15.2.4",
     "nodemailer": "^6.10.1",
     "react": "^19.0.0",
