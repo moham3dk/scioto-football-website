@@ -2,7 +2,6 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Loading from "@/components/Loading";
-import Error from "@/components/Error";
 
 const Page = () => {
   const [formData, setFormData] = useState({

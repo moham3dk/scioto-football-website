@@ -23,11 +23,13 @@ const XEmbed = dynamic(
 export default function Home() {
   const [sponorsLoading, setSponsorsLoading] = useState(true);
   const [sponsors, setSponsors] = useState([]);
-  const [sponsorsError, setSponsorsError] = useState(null);
+  const [sponsorsError, setSponsorsError] = useState<string | null>(null);
 
   const [announcementsLoading, setAnnouncementsLoading] = useState(true);
   const [announcements, setAnnouncements] = useState([]);
-  const [announcementsError, setAnnouncementsError] = useState(null);
+  const [announcementsError, setAnnouncementsError] = useState<string | null>(
+    null
+  );
 
   useEffect(() => {
     const fetchSponsors = async () => {
@@ -35,7 +37,17 @@ export default function Home() {
         const response = await axios.get("/api/sponsors");
         setSponsors(response.data["values"]);
       } catch (error: any) {
-        setSponsorsError(error.message);
+        if (error.response?.status === 429) {
+          setSponsorsError(
+            "It seems like we've hit a rate limit. Please try again later."
+          );
+        } else if (error.message) {
+          setSponsorsError(`An error occurred: ${error.message}`);
+        } else {
+          setSponsorsError(
+            "An unknown error occurred while fetching sponsors."
+          );
+        }
       } finally {
         setSponsorsLoading(false);
       }
@@ -46,7 +58,17 @@ export default function Home() {
         const response = await axios.get("/api/announcements");
         setAnnouncements(response.data["values"]);
       } catch (error: any) {
-        setAnnouncementsError(error.message);
+        if (error.response?.status === 429) {
+          setAnnouncementsError(
+            "It seems like we've hit a rate limit. Please try again later."
+          );
+        } else if (error.message) {
+          setAnnouncementsError(`An error occurred: ${error.message}`);
+        } else {
+          setAnnouncementsError(
+            "An unknown error occurred while fetching announcements."
+          );
+        }
       } finally {
         setAnnouncementsLoading(false);
       }
@@ -106,7 +128,7 @@ export default function Home() {
             <CgSpinner className="animate-spin h-8 w-8 text-[#014321]" />
           </div>
         ) : announcementsError ? (
-          <p className="text-[#014321] font-oswald text-lg">
+          <p className="text-red-600 font-oswald text-lg">
             {announcementsError}
           </p>
         ) : (
@@ -150,7 +172,7 @@ export default function Home() {
         <h2 className="text-3xl font-oswald text-white text-center">
           WHAT'S NEW
         </h2>
-        <p className="text-center text-lg font-normal text-white mt-4">
+        <p className="text-center text-lg font-oswald text-white mt-4">
           Stay updated with the latest news and events on our social media
           channels.
         </p>
@@ -189,7 +211,7 @@ export default function Home() {
         <h2 className="text-3xl font-oswald text-[#014321] text-center">
           OUR SPONSORS
         </h2>
-        <p className="text-center text-lg font-normal text-[#014321] mt-4">
+        <p className="text-center text-lg font-oswald text-[#014321] mt-4">
           We are grateful for the support of our sponsors. Please consider
           supporting them.
         </p>
@@ -199,7 +221,7 @@ export default function Home() {
               <CgSpinner className="animate-spin h-8 w-8 text-[#014321]" />
             </div>
           ) : sponsorsError ? (
-            <p className="text-[#014321] font-oswald text-lg">
+            <p className="text-red-600 font-oswald text-lg">
               {sponsorsError}
             </p>
           ) : (

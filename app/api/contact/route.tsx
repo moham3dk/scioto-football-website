@@ -89,10 +89,7 @@ Message: ${sanitizedMessage}
     console.error("Error sending email:", error);
     return NextResponse.json(
       {
-        success: false,
-        message: "An internal error occurred while sending the email.",
-        error:
-          process.env.NODE_ENV === "development" ? error.message : undefined,
+        error: "Internal Server Error",
       },
       { status: 500 }
     );

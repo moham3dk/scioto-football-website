@@ -1,7 +1,9 @@
 import React from "react";
 import Link from "next/link";
 
-const Error = () => {
+const Error = ({
+  errorMessage = "We ran into an unexpected error. Let's get you back on track.",
+}) => {
   return (
     <div className="bg-white min-h-screen max-w-screen flex justify-center items-center">
       <div className="text-center space-y-6 px-4 -mt-[10%]">
@@ -9,7 +11,7 @@ const Error = () => {
           UH OH!
         </h1>
         <h2 className="font-oswald text-[#014321] text-xl md:text-2xl lg:text-3xl italic">
-          We ran into an unexpected error. Let's get you back on track.
+          {errorMessage}
         </h2>
         <Link
           href="/"

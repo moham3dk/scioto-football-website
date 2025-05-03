@@ -7,7 +7,7 @@ export async function GET(request: NextRequest) {
   } catch (error) {
     console.error("Error fetching storied rivals:", error);
     return NextResponse.json(
-      { error: "Failed to fetch storied rivals" },
+      { error: "Internal Server Error" },
       { status: 500 }
     );
   }

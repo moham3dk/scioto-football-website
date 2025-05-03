@@ -1,7 +1,8 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from "react";
-import { FaInstagram, FaFacebook, FaTwitter } from "react-icons/fa";
+import { FaInstagram, FaFacebook } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 import { LiaTimesSolid, LiaBarsSolid } from "react-icons/lia";
 
 export default function Navbar() {
@@ -17,6 +18,7 @@ export default function Navbar() {
     { name: "COACHES", href: "coaches" },
     { name: "SCHEDULE", href: "schedule" },
     { name: "STADIUM", href: "stadium" },
+    { name: "HISTORY", href: "history" },
     { name: "MEDIA", href: "media" },
     { name: "SHOP", href: "https://dublin-scioto-touchdown-club.square.site/" },
     { name: "LINKS", href: "links" },
@@ -60,22 +62,22 @@ export default function Navbar() {
           </div>
           <div className="flex space-x-4">
             <a
-              href="#"
+              href="https://www.instagram.com/dshsirishfootball/"
               className="text-2xl md:text-4xl font-normal hover:text-gray-400 transition-colors duration-300"
             >
               <FaInstagram />
             </a>
             <a
-              href="#"
+              href="https://www.facebook.com/groups/Sciotofootball/"
               className="text-2xl md:text-4xl font-normal hover:text-gray-400 transition-colors duration-300"
             >
               <FaFacebook />
             </a>
             <a
-              href="#"
+              href="https://x.com/sciotofootball"
               className="text-2xl md:text-4xl font-normal hover:text-gray-400 transition-colors duration-300"
             >
-              <FaTwitter />
+              <FaXTwitter />
             </a>
           </div>
         </div>

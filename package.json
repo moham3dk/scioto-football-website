@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@daveyplate/next-rate-limit": "^2.0.1",
     "@types/nodemailer": "^6.4.17",
     "@types/validator": "^13.15.0",
     "axios": "^1.8.1",
