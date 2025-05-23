@@ -132,7 +132,7 @@ const Page = () => {
                 {data.map((player: Array<string | number>, index) => (
                   <tr
                     key={index}
-                    className="hover:bg-gray-50 transition-colors"
+                    className="hover:bg-gray-300 transition-colors"
                   >
                     <td className="py-2 px-4 border-b text-[#014321]">
                       {player[0]}
@@ -159,7 +159,7 @@ const Page = () => {
             {nflPlayers.map((player, idx) => (
               <div
                 key={idx}
-                className="border border-[#014321] p-4 hover:bg-gray-50 transition-colors"
+                className="border border-[#014321] p-4 hover:bg-gray-300 transition-colors"
               >
                 <img
                   src={player.img}

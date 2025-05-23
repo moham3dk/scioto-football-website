@@ -56,7 +56,7 @@ const Page = () => {
             </thead>
             <tbody>
               {data.map((player: Array<string | number>, index) => (
-                <tr key={index} className="hover:bg-gray-50 transition-colors">
+                <tr key={index} className="hover:bg-gray-300 transition-colors">
                   {player.map((item: string | number, i: number) => (
                     <td key={i} className="py-2 px-4 border-b text-[#014321]">
                       {item}

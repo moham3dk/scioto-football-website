@@ -49,7 +49,7 @@ const Page = () => {
               href={`https://www.youtube.com/watch?v=${snippet.resourceId.videoId}`}
               target="_blank"
               rel="noopener noreferrer"
-              className="border rounded-2xl shadow hover:shadow-lg transition duration-300 overflow-hidden"
+              className="border shadow hover:bg-gray-300 transition duration-300 overflow-hidden"
             >
               <img
                 src={snippet.thumbnails.high.url}

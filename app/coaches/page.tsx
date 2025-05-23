@@ -91,7 +91,7 @@ const Page = () => {
             </thead>
             <tbody>
               {coachingStaff.map((coach, index) => (
-                <tr key={index} className="hover:bg-gray-50 transition-colors">
+                <tr key={index} className="hover:bg-gray-300 transition-colors">
                   <td className="py-2 px-4 border-b text-[#014321]">
                     {coach.name} {/* Name */}
                   </td>
