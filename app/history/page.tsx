@@ -4,7 +4,46 @@ import axios from "axios";
 import Loading from "@/components/Loading";
 import Error from "@/components/Error";
 
-const tabs = ["Alumni", "Irish in the NFL", "Records and Awards", "Stats"];
+const tabs = ["Alumni", "Irish in the NFL", "Records and Awards"];
+
+const nflPlayers = [
+  {
+    name: "Bradley McDougald",
+    position: "FS",
+    teams: "TAM, KAN, SEA, NYJ, TEN, JAX",
+    years: "2013 - 2021",
+    img: "https://www.pro-football-reference.com/req/20230307/images/headshots/McDoBr01_2019.jpg",
+    pfr: "https://www.pro-football-reference.com/players/M/McDoBr01.htm",
+    wiki: "https://en.wikipedia.org/wiki/Bradley_McDougald",
+  },
+  {
+    name: "Jay Richardson",
+    position: "DE",
+    teams: "AK, SEA, NOR",
+    years: "2007 - 2013",
+    img: "https://www.pro-football-reference.com/req/20230307/images/headshots/RichJa99_2019.jpg",
+    pfr: "https://www.pro-football-reference.com/players/R/RichJa99.htm",
+    wiki: "https://en.wikipedia.org/wiki/Jay_Richardson",
+  },
+  {
+    name: "Nick Goings",
+    position: "RB",
+    teams: "CAR",
+    years: "2001 - 2008",
+    img: "https://upload.wikimedia.org/wikipedia/commons/thumb/e/ee/Nick_Goings_in_2006.jpg/440px-Nick_Goings_in_2006.jpg",
+    pfr: "https://www.pro-football-reference.com/players/G/GoinNi00.htm",
+    wiki: "https://en.wikipedia.org/wiki/Nick_Goings",
+  },
+  {
+    name: "Deji Olatoye",
+    position: "CB",
+    teams: "DAL, ATL",
+    years: "2016 - 2017",
+    img: "https://a.espncdn.com/combiner/i?img=/i/headshots/nfl/players/full/17224.png&w=350&h=254",
+    pfr: "https://www.espn.com/nfl/player/_/id/17224/deji-olatoye",
+    wiki: "https://en.wikipedia.org/wiki/Deji_Olatoye",
+  },
+];
 
 const Page = () => {
   const [selectedTab, setSelectedTab] = useState("Alumni");
@@ -41,11 +80,11 @@ const Page = () => {
 
     if (selectedTab === "Alumni") {
       setData(alumniData);
-      setLoading(false);
     } else {
       setData([]);
-      setLoading(false);
     }
+
+    setLoading(false);
   }, [selectedTab, alumniData]);
 
   return (
@@ -115,10 +154,57 @@ const Page = () => {
               </tbody>
             </table>
           </div>
-        ) : (
-          <div className="text-center text-[#014321] text-lg">
-            {selectedTab} content coming soon.
+        ) : selectedTab === "Irish in the NFL" ? (
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {nflPlayers.map((player, idx) => (
+              <div
+                key={idx}
+                className="border border-[#014321] p-4 hover:bg-gray-50 transition-colors"
+              >
+                <img
+                  src={player.img}
+                  alt={player.name}
+                  className="w-full h-60 object-cover mb-4"
+                />
+                <h2 className="text-2xl font-bold text-[#014321]">
+                  <a
+                    href={player.pfr}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    {player.name}
+                  </a>
+                </h2>
+                <ul className="text-[#014321] mt-2 space-y-1">
+                  <li>
+                    <strong>Position:</strong> {player.position}
+                  </li>
+                  <li>
+                    <strong>Teams:</strong> {player.teams}
+                  </li>
+                  <li>
+                    <strong>Years:</strong> {player.years}
+                  </li>
+                  <li>
+                    <a
+                      href={player.wiki}
+                      className="text-blue-600 underline"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Wikipedia
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            ))}
           </div>
+        ) : (
+          <iframe
+            className="w-full h-[800px] border-2 border-[#014321]"
+            src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSm3nUkjyx6FiyWzJiIx3sHsp3r5MBrBzDyzcpP-smmT618lfyQ9Yc5VHX78EokVdhG-3flXG4mFY7_/pubhtml?widget=true&amp;headers=false"
+            title="Records and Awards"
+          ></iframe>
         )}
       </div>
     </div>
