@@ -16,6 +16,7 @@ export default function Navbar() {
     { name: "HOME", href: "/" },
     { name: "ROSTER", href: "roster" },
     { name: "COACHES", href: "coaches" },
+    { name: "CALENDAR", href: "calendar" },
     { name: "SCHEDULE", href: "schedule" },
     { name: "STADIUM", href: "stadium" },
     { name: "HISTORY", href: "history" },

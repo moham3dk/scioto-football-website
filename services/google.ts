@@ -47,3 +47,21 @@ export const getStoriedRivals = async (): Promise<any> => {
   const response = await axios.get(url);
   return response.data;
 };
+
+export const getVarsitySched = async (): Promise<any> => {
+  const url = `${sheetsApiUrl}varsity-schedule?alt=json&key=${apiKey}`
+  const response = await axios.get(url);
+  return response.data;
+}
+
+export const getJVSched = async (): Promise<any> => {
+  const url = `${sheetsApiUrl}jv-schedule?alt=json&key=${apiKey}`
+  const response = await axios.get(url);
+  return response.data;
+}
+
+export const getFreshmanSched = async (): Promise<any> => {
+  const url = `${sheetsApiUrl}frosh-schedule?alt=json&key=${apiKey}`
+  const response = await axios.get(url);
+  return response.data;
+}
