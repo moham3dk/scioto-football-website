@@ -84,6 +84,8 @@ const Page = () => {
               <p className="text-sm text-gray-600">When: {row[7]}</p>
               <p className="text-sm text-gray-600">Where: {row[6] === "H" ? "Home" : "Away"}</p>
               {row[8] && <p className="text-sm text-gray-600">Event: {row[8]}</p>}
+              {row[1] && row[2] && row[4] && <p className="text-sm text-gray-600 font-extrabold">Score: {row[1]} - {row[2]} ({row[4]})</p>}
+
               {row[10] && (
                 <a
                   href={row[10].toString()}
