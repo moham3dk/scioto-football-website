@@ -1,4 +1,4 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import Loading from "@/components/Loading";
@@ -14,21 +14,24 @@ const Page = () => {
     []
   );
   const [error, setError] = useState<string | null>(null);
-  
+
   useEffect(() => {
     const fetchSchedule = async () => {
       setLoading(true);
       try {
         let endpoint = "/api/schedule/varsity";
         if (selectedTab === "JV") endpoint = "/api/schedule/jv";
-        else if (selectedTab === "Freshmen") endpoint = "/api/schedule/freshman";
+        else if (selectedTab === "Freshmen")
+          endpoint = "/api/schedule/freshman";
 
         const response = await axios.get(endpoint);
         setScheduleData(response.data["values"]);
         setError(null);
       } catch (err: any) {
         if (err.response?.status === 429) {
-          setError("It seems like we've hit a rate limit. Please try again later.");
+          setError(
+            "It seems like we've hit a rate limit. Please try again later."
+          );
         } else if (err.message) {
           setError(`An error occurred: ${err.message}`);
         } else {
@@ -74,33 +77,39 @@ const Page = () => {
         ) : error ? (
           <Error errorMessage={error} />
         ) : (
-          <div className="grid grid-cols-2 gap-6 w-full max-w-6xl">
-          {rows.map((row, idx) => (
-            <div
-              key={idx}
-              className="border border-gray-200 shadow-md p-4 rounded-xl bg-[#f9f9f9]"
-            >
-              <h2 className="text-xl font-semibold mb-2">Scioto vs. {row[3]}</h2>
-              <p className="text-sm text-gray-600">When: {row[7]}</p>
-              <p className="text-sm text-gray-600">Where: {row[6] === "H" ? "Home" : "Away"}</p>
-              {row[8] && <p className="text-sm text-gray-600">Event: {row[8]}</p>}
-              {row[1] && row[2] && row[4] && <p className="text-sm text-gray-600 font-extrabold">Score: {row[1]} - {row[2]} ({row[4]})</p>}
+          <div className="grid grid-cols-2 gap-6 w-full max-w-6xl font-oswald ">
+            {rows.map((row, idx) => (
+              <div
+                key={idx}
+                className="border border-[#014321] text-[#014321] shadow-md p-4"
+              >
+                <h2 className="text-xl uppercase mb-2">Scioto vs. {row[3]}</h2>
+                <p className="text-sm">When: {row[7]}</p>
+                <p className="text-sm">
+                  Where: {row[6] === "H" ? "Home" : "Away"}
+                </p>
+                {row[8] && <p className="text-sm">Event: {row[8]}</p>}
+                {row[1] && row[2] && row[4] && (
+                  <p className="text-sm font-extrabold">
+                    Score: {row[1]} - {row[2]} ({row[4]})
+                  </p>
+                )}
 
-              {row[10] && (
-                <a
-                  href={row[10].toString()}
-                  className="text-sm text-blue-500 underline mt-2 inline-block"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  MaxPreps Link
-                </a>
-              )}
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
+                {row[10] && (
+                  <a
+                    href={row[10].toString()}
+                    className="text-sm text-blue-500 underline mt-2 inline-block"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    MaxPreps Link
+                  </a>
+                )}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
