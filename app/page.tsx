@@ -104,16 +104,16 @@ export default function Home() {
 
           <div className="flex justify-center gap-4 mt-6">
             <Link
-              href="/tickets"
+              href="https://scioto.dublinschools.net/scioto-high-school/event-tickets"
               className="bg-[#014321] hover:bg-green-950 text-white font-semibold py-2 px-8 font-oswald transition duration-300 transform hover:scale-105"
             >
               BUY TICKETS
             </Link>
             <Link
-              href="/about"
+              href="/schedule"
               className="bg-transparent border-2 font-oswald border-white hover:bg-white/20 text-white font-semibold py-2 px-8 transition duration-300 transform hover:scale-105"
             >
-              LEARN MORE
+              VIEW SCHEDULE
             </Link>
           </div>
         </div>

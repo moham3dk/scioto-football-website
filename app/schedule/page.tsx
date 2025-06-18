@@ -78,35 +78,53 @@ const Page = () => {
           <Error errorMessage={error} />
         ) : (
           <div className="grid grid-cols-2 gap-6 w-full max-w-6xl font-oswald ">
-            {rows.map((row, idx) => (
-              <div
-                key={idx}
-                className="border border-[#014321] text-[#014321] shadow-md p-4"
-              >
-                <h2 className="text-xl uppercase mb-2">Scioto vs. {row[3]}</h2>
-                <p className="text-sm">When: {row[7]}</p>
-                <p className="text-sm">
-                  Where: {row[6] === "H" ? "Home" : "Away"}
-                </p>
-                {row[8] && <p className="text-sm">Event: {row[8]}</p>}
-                {row[1] && row[2] && row[4] && (
-                  <p className="text-sm font-extrabold">
-                    Score: {row[1]} - {row[2]} ({row[4]})
-                  </p>
-                )}
+            {rows
+              .filter((row) => row[7] > new Date().toISOString().split("T")[0])
 
-                {row[10] && (
-                  <a
-                    href={row[10].toString()}
-                    className="text-sm text-blue-500 underline mt-2 inline-block"
-                    target="_blank"
-                    rel="noopener noreferrer"
+              .map((row, idx) => {
+                const isNextGame = idx == 0;
+                return (
+                  <div
+                    key={idx}
+                    className={`border text-[#014321] shadow-md p-4 ${
+                      isNextGame
+                        ? "bg-[#014321] border-2 border-[#014321] text-white"
+                        : "bg-white border-[#014321]"
+                    }`}
                   >
-                    MaxPreps Link
-                  </a>
-                )}
-              </div>
-            ))}
+                    <h2 className="text-xl uppercase mb-2">
+                      Scioto vs. {row[3]}{" "}
+                      {isNextGame && (
+                        <span className="ml-2 bg-white text-[#014321] px-2 py-0.5 rounded text-xs">
+                          Next Game
+                        </span>
+                      )}
+                    </h2>
+                    <p className="text-sm">When: {row[7]}</p>
+                    <p className="text-sm">
+                      Where: {row[6] === "H" ? "Home" : "Away"}
+                    </p>
+                    {row[8] && <p className="text-sm">Event: {row[8]}</p>}
+                    {row[1] && row[2] && row[4] && (
+                      <p className="text-sm font-extrabold">
+                        Score: {row[1]} - {row[2]} ({row[4]})
+                      </p>
+                    )}
+                    {row[10] && (
+                      <a
+                        href={row[10].toString()}
+                        className={`text-sm underline mt-2 inline-block ${
+                          isNextGame ? "text-white" : "text-blue-500"
+                        }`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        MaxPreps Link
+                      </a>
+                    )}
+                  </div>
+                );
+              })}
           </div>
         )}
       </div>
