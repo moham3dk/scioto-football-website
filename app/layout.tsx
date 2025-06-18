@@ -29,6 +29,14 @@ export const metadata: Metadata = {
     url: "https://sciotofootball.com",
     siteName: "Scioto Football",
     type: "website",
+    images: [
+      {
+        url: "https://sciotofootball.com/images/team.jpeg",
+        width: 1200,
+        height: 630,
+        alt: "Dublin Scioto Football Team",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
@@ -36,6 +44,7 @@ export const metadata: Metadata = {
     description:
       "Explore the latest news, games, and updates from the Dublin Scioto Irish Football Team.",
     site: "@SciotoFootball",
+    images: ["https://sciotofootball.com/images/team.jpeg"],
   },
 };
 
