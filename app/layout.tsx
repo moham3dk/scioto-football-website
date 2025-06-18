@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     "Football Roster",
   ],
   openGraph: {
-    title: "Dublin Scioto High School Football | Official Website",
+    title: "Dublin Scioto High School Football",
     description:
       "Explore the latest news, games, and updates from the Dublin Scioto Irish Football Team.",
     url: "https://sciotofootball.com",
@@ -32,7 +32,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Dublin Scioto High School Football | Official Website",
+    title: "Dublin Scioto High School Football",
     description:
       "Explore the latest news, games, and updates from the Dublin Scioto Irish Football Team.",
     site: "@SciotoFootball",
