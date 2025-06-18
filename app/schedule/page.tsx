@@ -68,9 +68,12 @@ const Page = () => {
       </div>
 
       <div className="w-full max-w-6xl">
-        <h1 className="text-4xl font-oswald text-[#014321] text-center mb-8">
-          {selectedTab.toUpperCase()} SCHEDULE
-        </h1>
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold text-[#014321] mb-4 font-oswald">
+            {selectedTab.toUpperCase()} SCHEDULE
+          </h1>
+          <div className="w-24 h-1 bg-[#014321] mx-auto"></div>
+        </div>
 
         {loading ? (
           <Loading />
@@ -101,9 +104,8 @@ const Page = () => {
                       )}
                     </h2>
                     <p className="text-sm">When: {row[7]}</p>
-                    <p className="text-sm">
-                      Where: {row[6] === "H" ? "Home" : "Away"}
-                    </p>
+                    <p className="text-sm">Where: {row[6] === "H" ? "Home" : `Away (${row[3]})`}</p>
+
                     {row[8] && <p className="text-sm">Event: {row[8]}</p>}
                     {row[1] && row[2] && row[4] && (
                       <p className="text-sm font-extrabold">

@@ -37,9 +37,12 @@ const Page = () => {
 
   return (
     <div className="min-h-screen bg-white px-4 py-8">
-      <h1 className="text-4xl font-oswald text-[#014321] text-center mb-8">
-        STORIED RIVALS HIGHLIGHTS
-      </h1>
+      <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold text-[#014321] mb-4 font-oswald">
+            STORIED RIVALS HIGHLIGHTS
+          </h1>
+          <div className="w-24 h-1 bg-[#014321] mx-auto"></div>
+        </div>
       <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
         {videos.map((video: any, index) => {
           const snippet = video.snippet;

@@ -15,7 +15,7 @@ const Page = () => {
     {
       name: "Gabe Hover",
       role: "Defensive Backs",
-      bio: "Coach Hoover is returning to the sideline for his 22nd season of coaching, 17th with the Irish. Coach Hoover attended The Ohio State University and began coaching in 1997 at Buckeye Valley (his Alma Mater). He has been an Educator in Dublin since the fall of 1999 at various buildings and roles. Coach Hoover is currently teaching Health and Physical Education at Scioto. His wife, Georgia, is also a Scioto educator and guidance counselor. Coach Hoover’s two daughters (Alexis and Morgan) are Scioto grads and are attending Kent State University.",
+      bio: "Coach Hoover is returning to the sideline for his 22nd season of coaching, 17th with the Irish. Coach Hoover attended The Ohio State University and began coaching in 1997 at Buckeye Valley (his Alma Mater). He has been an Educator in Dublin since the fall of 1999 at various buildings and roles. Coach Hoover is currently teaching Health and Physical Education at Scioto. His wife, Georgia, is also a Scioto educator and guidance counselor. Coach Hoover's two daughters (Alexis and Morgan) are Scioto grads and are attending Kent State University.",
     },
     {
       name: "Arby Jones",
@@ -55,7 +55,7 @@ const Page = () => {
     {
       name: "Drew Stagg",
       role: "Offensive Skill Coordinator",
-      bio: "Coach Stagg is a graduate of Walsh University where he played both defensive and offensive line. This is his 16th year with the Irish and his tenth year as the receivers coach for Scioto. Previously, Drew was the Irish Head Freshman Coach. Coach Stagg teaches 8th grade History at Davis Middle School. Coach Stagg has a bachelor’s degree in Education with a focus on integrated social studies. He also has his masters degree in curriculum and instruction, and a masters degree in educational leadership from Miami University. Coach Stagg resides in Powell with his wife Krista and their two sons Kaden and Koda Stagg.",
+      bio: "Coach Stagg is a graduate of Walsh University where he played both defensive and offensive line. This is his 16th year with the Irish and his tenth year as the receivers coach for Scioto. Previously, Drew was the Irish Head Freshman Coach. Coach Stagg teaches 8th grade History at Davis Middle School. Coach Stagg has a bachelor's degree in Education with a focus on integrated social studies. He also has his masters degree in curriculum and instruction, and a masters degree in educational leadership from Miami University. Coach Stagg resides in Powell with his wife Krista and their two sons Kaden and Koda Stagg.",
     },
     {
       name: "Doug Tima",
@@ -65,7 +65,7 @@ const Page = () => {
     {
       name: "Jon Torski",
       role: "Linebackers and Defensive Coordinator",
-      bio: "Coach Torski is beginning his 17th year coaching. Coach Torski is a 2007 Dublin Scioto graduate where he played football and baseball. Coach Torski went on to earn a bachelor’s degree from The Ohio State University in finance before returning to school to earn his teaching certification from Capital University in 2018. Coach Torski teaches mathematics at Thomas Worthington High School. Coach Torski and his wife Megan reside in Columbus along with their daughter Maeve.",
+      bio: "Coach Torski is beginning his 17th year coaching. Coach Torski is a 2007 Dublin Scioto graduate where he played football and baseball. Coach Torski went on to earn a bachelor's degree from The Ohio State University in finance before returning to school to earn his teaching certification from Capital University in 2018. Coach Torski teaches mathematics at Thomas Worthington High School. Coach Torski and his wife Megan reside in Columbus along with their daughter Maeve.",
     },
     {
       name: "John Witt",
@@ -75,31 +75,85 @@ const Page = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white w-full flex justify-center items-center p-4">
-      <div className="w-full max-w-6xl my-4 md:my-8">
-        <h1 className="text-4xl font-oswald text-[#014321] text-center mb-8">
-          2025 COACHING STAFF
-        </h1>
-        <div className="overflow-x-auto">
-          <table className="min-w-full bg-white border border-[#014321]">
-            <thead>
-              <tr className="bg-[#014321] text-white">
-                <th className="py-3 px-4 border-b text-left">Name</th>
-                <th className="py-3 px-4 border-b text-left">Role</th>
-                <th className="py-3 px-4 border-b text-left">Bio</th>
+    <div className="min-h-screen bg-gray-50 w-full py-8 px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto">
+        {/* Header Section */}
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold text-[#014321] mb-4 font-oswald">
+            2025 COACHING STAFF
+          </h1>
+          <div className="w-24 h-1 bg-[#014321] mx-auto"></div>
+        </div>
+
+        {/* Mobile Cards View */}
+        <div className="lg:hidden space-y-6">
+          {coachingStaff.map((coach, index) => (
+            <div
+              key={index}
+              className="bg-white rounded-lg shadow-md overflow-hidden border border-[#014321]/20 hover:shadow-lg transition-shadow"
+            >
+              <div className="p-6">
+                <div className="flex justify-between items-start">
+                  <div>
+                    <h3 className="text-xl font-bold text-[#014321]">
+                      {coach.name}
+                    </h3>
+                    <p className="text-sm text-gray-600 italic mt-1">
+                      {coach.role}
+                    </p>
+                  </div>
+                </div>
+                <p className="mt-4 text-gray-700">{coach.bio}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop Table View */}
+        <div className="hidden lg:block bg-white rounded-lg shadow-md overflow-hidden border border-[#014321]/20">
+          <table className="min-w-full divide-y divide-gray-200">
+            <thead className="bg-[#014321]">
+              <tr>
+                <th
+                  scope="col"
+                  className="px-6 py-4 text-left text-xs font-medium text-white uppercase tracking-wider"
+                >
+                  Name
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-4 text-left text-xs font-medium text-white uppercase tracking-wider"
+                >
+                  Role
+                </th>
+                <th
+                  scope="col"
+                  className="px-6 py-4 text-left text-xs font-medium text-white uppercase tracking-wider"
+                >
+                  Bio
+                </th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="bg-white divide-y divide-gray-200">
               {coachingStaff.map((coach, index) => (
-                <tr key={index} className="hover:bg-gray-300 transition-colors">
-                  <td className="py-2 px-4 border-b text-[#014321]">
-                    {coach.name} {/* Name */}
+                <tr
+                  key={index}
+                  className="hover:bg-gray-50 transition-colors"
+                >
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="text-sm font-bold text-[#014321]">
+                      {coach.name}
+                    </div>
                   </td>
-                  <td className="py-2 px-4 border-b text-[#014321]">
-                    {coach.role} {/* Role */}
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <div className="text-sm text-gray-600 italic">
+                      {coach.role}
+                    </div>
                   </td>
-                  <td className="py-2 px-4 border-b text-[#014321]">
-                    {coach.bio} {/* Bio */}
+                  <td className="px-6 py-4">
+                    <div className="text-sm text-gray-700 max-w-prose">
+                      {coach.bio}
+                    </div>
                   </td>
                 </tr>
               ))}

@@ -58,9 +58,12 @@ const Page = () => {
   return (
     <div className="min-h-screen bg-white w-full flex justify-center items-center p-4">
       <div className="w-full max-w-6xl my-4 md:my-8">
-        <h1 className="text-4xl font-oswald text-[#014321] text-center mb-8">
-          STADIUM
-        </h1>
+        <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold text-[#014321] mb-4 font-oswald">
+            STADIUM
+          </h1>
+          <div className="w-24 h-1 bg-[#014321] mx-auto"></div>
+        </div>
 
         <Marquee speed={50} gradient={false} className="mb-10">
           {images.map((image, index) => (

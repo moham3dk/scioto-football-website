@@ -79,9 +79,12 @@ const links = [
 const Page = () => {
   return (
     <div className="min-h-screen bg-white px-4 py-8">
-      <h1 className="text-4xl font-oswald text-[#014321] text-center mb-8">
-        RESOURCES & LINKS
-      </h1>
+      <div className="text-center mb-12">
+          <h1 className="text-4xl md:text-5xl font-bold text-[#014321] mb-4 font-oswald">
+            RESOURCES & LINKS
+          </h1>
+          <div className="w-24 h-1 bg-[#014321] mx-auto"></div>
+        </div>
       <div className="max-w-5xl mx-auto grid gap-6 sm:grid-cols-1 md:grid-cols-2">
         {links.map((link, index) => (
           <a
