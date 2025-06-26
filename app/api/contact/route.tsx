@@ -71,7 +71,7 @@ export async function GET(request: NextRequest) {
       to: EMAIL_RECIPIENT,
       subject: `New Contact: ${sanitizedSubject}`,
       text: `
-You have received a new message from your contact form.
+You have received a new message from the contact form on the Scioto Football website.
 
 Name: ${sanitizedName}
 Email: ${sanitizedEmail}

@@ -4,7 +4,7 @@ import axios from "axios";
 import Loading from "@/components/Loading";
 import Error from "@/components/Error";
 
-const tabs = ["Alumni", "Irish in the NFL", "Records and Awards"];
+const tabs = ["History", "Alumni", "Irish in the NFL", "Records and Awards"];
 
 const nflPlayers = [
   {
@@ -46,7 +46,7 @@ const nflPlayers = [
 ];
 
 const Page = () => {
-  const [selectedTab, setSelectedTab] = useState("Alumni");
+  const [selectedTab, setSelectedTab] = useState("History");
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<Array<Array<string | number>>>([]);
   const [alumniData, setAlumniData] = useState<Array<Array<string | number>>>(
@@ -202,11 +202,17 @@ const Page = () => {
               </div>
             ))}
           </div>
-        ) : (
+        ) : selectedTab === "Records and Awards" ? (
           <iframe
             className="w-full h-[800px] border-2 border-[#014321]"
             src="https://docs.google.com/spreadsheets/d/e/2PACX-1vSm3nUkjyx6FiyWzJiIx3sHsp3r5MBrBzDyzcpP-smmT618lfyQ9Yc5VHX78EokVdhG-3flXG4mFY7_/pubhtml?widget=true&amp;headers=false"
             title="Records and Awards"
+          ></iframe>
+        ) : (
+          <iframe
+            className="w-full h-[800px] border-2 border-[#014321]"
+            src="https://fourseasonsfootball.com/Ohio%20Web/Dublin%20Scioto.htm"
+            title="Dublin Scioto Football History"
           ></iframe>
         )}
       </div>
