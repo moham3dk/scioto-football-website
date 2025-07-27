@@ -110,7 +110,7 @@ const Page = () => {
                 alt="Full view"
                 width={1200}
                 height={800}
-                className="object-contain w-full max-h-[80vh] mx-auto border-2 border-[#014321]"  
+                className="object-contain w-full max-h-[80vh] mx-auto border-2 border-[#014321]"
               />
               <button
                 onClick={() => setSelectedImage(null)}

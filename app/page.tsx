@@ -5,20 +5,8 @@ import Link from "next/link";
 import Marquee from "react-fast-marquee";
 import { CgSpinner } from "react-icons/cg";
 import axios from "axios";
-import dynamic from "next/dynamic";
-
-const FacebookEmbed = dynamic(
-  () => import("react-social-media-embed").then((mod) => mod.FacebookEmbed),
-  { ssr: false }
-);
-const InstagramEmbed = dynamic(
-  () => import("react-social-media-embed").then((mod) => mod.InstagramEmbed),
-  { ssr: false }
-);
-const XEmbed = dynamic(
-  () => import("react-social-media-embed").then((mod) => mod.XEmbed),
-  { ssr: false }
-);
+import { FaInstagram, FaFacebookF, FaArrowRight } from "react-icons/fa";
+import { FaXTwitter } from "react-icons/fa6";
 
 export default function Home() {
   const [sponorsLoading, setSponsorsLoading] = useState(true);
@@ -167,41 +155,81 @@ export default function Home() {
           </div>
         )}
       </div>
+
       {/* Social Media */}
-      <div className="flex flex-col w-full py-12 bg-[#014321]">
-        <h2 className="text-3xl font-oswald text-white text-center">
-          WHAT'S NEW
-        </h2>
-        <p className="text-center text-lg font-oswald text-white mt-4">
-          Stay updated with the latest news and events on our social media
-          channels.
-        </p>
-        <div className="flex flex-col md:flex-row flex-wrap justify-center items-center gap-4 p-4 w-full">
-          {/* Facebook Embed */}
-          <div className="w-full md:w-[calc(33%-1rem)] min-w-[300px] max-w-[90vw] h-[500px] md:h-[700px]">
-            <FacebookEmbed
-              url="https://www.facebook.com/DublinSciotoIrishFootball/posts/107651307709133"
-              width="100%"
-              height="100%"
-            />
-          </div>
+      <div className="flex flex-col w-full py-16 bg-[#014321] text-white">
+        <div className="max-w-6xl mx-auto px-4 w-full">
+          <h2 className="text-3xl font-oswald text-white text-center mb-4">
+            WHAT'S NEW
+          </h2>
+          <p className="text-center text-lg font-oswald text-gray-300 mb-12">
+            Stay updated with the latest news and events by following us on
+            social media.
+          </p>
 
-          {/* Instagram Embed */}
-          <div className="w-full md:w-[calc(33%-1rem)] min-w-[300px] max-w-[90vw] h-[500px] md:h-[700px]">
-            <InstagramEmbed
-              url="https://www.instagram.com/dshsirishfootball/p/DG4BydaSGGh"
-              width="100%"
-              height="100%"
-            />
-          </div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <Link
+              href="https://www.instagram.com/dshsirishfootball"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+            >
+              <div className="relative h-48 bg-gradient-to-tr from-purple-500 to-pink-600 flex items-center justify-center">
+                <FaInstagram className="text-white text-5xl opacity-90" />
+                <div className="absolute inset-0 bg-black/10"></div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-oswald text-[#014321] mb-2">
+                  Instagram
+                </h3>
 
-          {/* Twitter (X) Embed */}
-          <div className="w-full md:w-[calc(33%-1rem)] min-w-[300px] max-w-[90vw] h-[500px] md:h-[700px]">
-            <XEmbed
-              url="https://x.com/sciotofootball/status/1896940453758726294"
-              width="100%"
-              height="100%"
-            />
+                <p className="inline-flex items-center text-[#014321] font-oswald transition-colors">
+                  Follow Us <FaArrowRight className="ml-2" />
+                </p>
+              </div>
+            </Link>
+
+            <Link
+              href="https://x.com/sciotofootball"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+            >
+              <div className="relative h-48 bg-black flex items-center justify-center">
+                <FaXTwitter className="text-white text-5xl opacity-90" />
+                <div className="absolute inset-0 bg-black/10"></div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-oswald text-[#014321] mb-2">
+                  Twitter
+                </h3>
+
+                <p className="inline-flex items-center text-[#014321] font-oswald transition-colors">
+                  Follow Us <FaArrowRight className="ml-2" />
+                </p>
+              </div>
+            </Link>
+
+            <Link
+              href="https://www.facebook.com/groups/Sciotofootball/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="bg-white shadow-md overflow-hidden transition-all duration-300 hover:shadow-lg hover:-translate-y-1"
+            >
+              <div className="relative h-48 bg-[#1877F2] flex items-center justify-center">
+                <FaFacebookF className="text-white text-5xl opacity-90" />
+                <div className="absolute inset-0 bg-black/10"></div>
+              </div>
+              <div className="p-6">
+                <h3 className="text-xl font-oswald text-[#014321] mb-2">
+                  Facebook
+                </h3>
+
+                <p className="inline-flex items-center text-[#014321] font-oswald transition-colors">
+                  Join Group <FaArrowRight className="ml-2" />
+                </p>
+              </div>
+            </Link>
           </div>
         </div>
       </div>
@@ -221,9 +249,7 @@ export default function Home() {
               <CgSpinner className="animate-spin h-8 w-8 text-[#014321]" />
             </div>
           ) : sponsorsError ? (
-            <p className="text-red-600 font-oswald text-lg">
-              {sponsorsError}
-            </p>
+            <p className="text-red-600 font-oswald text-lg">{sponsorsError}</p>
           ) : (
             <Marquee gradient={false} speed={50} className="max-w-screen">
               {sponsors.map((sponsor: any) => (
