@@ -36,7 +36,7 @@ const Page = () => {
   if (error) return <Error errorMessage={error} />;
 
   return (
-    <div className="min-h-screen bg-white px-4 py-8">
+    <div className="min-h-screen bg-white p-4">
       <div className="text-center mb-12">
           <h1 className="text-4xl md:text-5xl font-bold text-[#014321] mb-4 font-oswald">
             STORIED RIVALS HIGHLIGHTS

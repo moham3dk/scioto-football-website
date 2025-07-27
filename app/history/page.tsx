@@ -89,30 +89,29 @@ const Page = () => {
 
   return (
     <div className="min-h-screen bg-white w-full flex flex-col items-center p-4">
-      <div className="w-full max-w-6xl mb-6">
-        <div className="flex justify-center gap-2 flex-wrap">
-          {tabs.map((tab) => (
-            <button
-              key={tab}
-              onClick={() => setSelectedTab(tab)}
-              className={`px-4 py-2 border-2 font-oswald uppercase transition-all ${
-                selectedTab === tab
-                  ? "bg-[#014321] text-white border-[#014321]"
-                  : "bg-white text-[#014321] border-[#014321] hover:bg-[#014321] hover:text-white"
-              }`}
-            >
-              {tab}
-            </button>
-          ))}
-        </div>
-      </div>
-
       <div className="w-full max-w-6xl">
-        <div className="text-center mb-12">
+        <div className="text-center mb-6">
           <h1 className="text-4xl md:text-5xl font-bold text-[#014321] mb-4 font-oswald">
             {selectedTab.toUpperCase()}
           </h1>
           <div className="w-24 h-1 bg-[#014321] mx-auto"></div>
+        </div>
+        <div className="w-full max-w-6xl mb-12">
+          <div className="flex justify-center gap-2 flex-wrap">
+            {tabs.map((tab) => (
+              <button
+                key={tab}
+                onClick={() => setSelectedTab(tab)}
+                className={`px-4 py-2 border-2 font-oswald uppercase transition-all ${
+                  selectedTab === tab
+                    ? "bg-[#014321] text-white border-[#014321]"
+                    : "bg-white text-[#014321] border-[#014321] hover:bg-[#014321] hover:text-white"
+                }`}
+              >
+                {tab}
+              </button>
+            ))}
+          </div>
         </div>
 
         {loading ? (
