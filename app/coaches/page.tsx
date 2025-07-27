@@ -90,12 +90,12 @@ const Page = () => {
           {coachingStaff.map((coach, index) => (
             <div
               key={index}
-              className="bg-white rounded-lg shadow-md overflow-hidden border border-[#014321]/20 hover:shadow-lg transition-shadow"
+              className="bg-white shadow-md overflow-hidden border border-[#014321] hover:shadow-lg transition-shadow"
             >
-              <div className="p-6">
+              <div className="p-6 font-oswald">
                 <div className="flex justify-between items-start">
                   <div>
-                    <h3 className="text-xl font-bold text-[#014321]">
+                    <h3 className="text-xl text-[#014321]">
                       {coach.name}
                     </h3>
                     <p className="text-sm text-gray-600 italic mt-1">
