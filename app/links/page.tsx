@@ -1,5 +1,7 @@
 "use client";
 import React from "react";
+import PageTitle from "@/components/common/PageTitle";
+import LinkCard from "@/components/links/LinkCard";
 
 const links = [
   {
@@ -76,33 +78,20 @@ const links = [
   },
 ];
 
-const Page = () => {
-  return (
-    <div className="min-h-screen bg-white p-4">
-      <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-[#014321] mb-4 font-oswald">
-            RESOURCES & LINKS
-          </h1>
-          <div className="w-24 h-1 bg-[#014321] mx-auto"></div>
-        </div>
-      <div className="max-w-5xl mx-auto grid gap-6 sm:grid-cols-1 md:grid-cols-2">
-        {links.map((link, index) => (
-          <a
-            key={index}
-            href={link.url}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="block border border-[#014321] p-4 shadow hover:shadow-lg transition duration-300"
-          >
-            <h2 className="text-lg font-semibold text-[#014321] mb-2">
-              {link.name}
-            </h2>
-            <p className="text-sm text-gray-600">{link.description}</p>
-          </a>
-        ))}
-      </div>
+const Page = () => (
+  <div className="min-h-screen bg-white p-4">
+    <PageTitle title="Links" />
+    <div className="max-w-5xl mx-auto grid gap-6 sm:grid-cols-1 md:grid-cols-2 my-6">
+      {links.map((link, index) => (
+        <LinkCard
+          key={index}
+          name={link.name}
+          url={link.url}
+          description={link.description}
+        />
+      ))}
     </div>
-  );
-};
+  </div>
+);
 
 export default Page;

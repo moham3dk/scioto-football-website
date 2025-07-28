@@ -1,7 +1,9 @@
 "use client";
 import React, { useState } from "react";
-import Image from "next/image";
-import Marquee from "react-fast-marquee";
+import PageTitle from "@/components/common/PageTitle";
+import ImageMarquee from "@/components/stadium/ImageMarquee";
+import StadiumInfo from "@/components/stadium/StadiumInfo";
+import ImageModal from "@/components/stadium/ImageModal";
 
 const Page = () => {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
@@ -58,69 +60,16 @@ const Page = () => {
   return (
     <div className="min-h-screen bg-white w-full flex justify-center items-center p-4">
       <div className="w-full max-w-6xl by-4 md:mb-8">
-        <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-[#014321] mb-4 font-oswald">
-            STADIUM
-          </h1>
-          <div className="w-24 h-1 bg-[#014321] mx-auto"></div>
-        </div>
+        <PageTitle title="Stadium Information" />
 
-        <Marquee speed={50} gradient={false} className="mb-10">
-          {images.map((image, index) => (
-            <div
-              key={index}
-              className="mx-4 cursor-pointer"
-              onClick={() => setSelectedImage(image.src)}
-            >
-              <Image
-                src={image.src}
-                alt={image.alt}
-                width={300}
-                height={200}
-                className="object-cover hover:scale-105 transition-transform duration-300 border-2 border-[#014321]"
-              />
-            </div>
-          ))}
-        </Marquee>
+        <ImageMarquee images={images} onImageClick={setSelectedImage} />
 
-        <div className="overflow-x-auto bg-white border border-[#014321] p-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {info.map((item, index) => (
-              <div key={index} className="flex flex-col">
-                <span className="font-semibold text-[#014321]">
-                  {item.label}
-                </span>
-                <span className="text-[#014321]">{item.value}</span>
-              </div>
-            ))}
-          </div>
-        </div>
+        <StadiumInfo info={info} />
 
-        {selectedImage && (
-          <div
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
-            onClick={() => setSelectedImage(null)}
-          >
-            <div
-              className="relative w-full max-w-4xl mx-auto"
-              onClick={(e) => e.stopPropagation()}
-            >
-              <Image
-                src={selectedImage}
-                alt="Full view"
-                width={1200}
-                height={800}
-                className="object-contain w-full max-h-[80vh] mx-auto border-2 border-[#014321]"
-              />
-              <button
-                onClick={() => setSelectedImage(null)}
-                className="absolute top-0 right-1 md:right-2 text-red-500 text-4xl font-bold"
-              >
-                ×
-              </button>
-            </div>
-          </div>
-        )}
+        <ImageModal
+          selectedImage={selectedImage}
+          onClose={() => setSelectedImage(null)}
+        />
       </div>
     </div>
   );

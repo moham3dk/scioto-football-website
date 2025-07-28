@@ -1,12 +1,18 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Error from "@/components/Error";
-import Loading from "@/components/Loading";
+import Error from "@/components/common/Error";
+import Loading from "@/components/common/Loading";
+import PageTitle from "@/components/common/PageTitle";
+import VideoCard from "@/components/media/VideoCard";
+
+interface Video {
+  snippet: any;
+}
 
 const Page = () => {
   const [loading, setLoading] = useState(true);
-  const [videos, setVideos] = useState([]);
+  const [videos, setVideos] = useState<Video[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -14,6 +20,7 @@ const Page = () => {
       try {
         const response = await axios.get("/api/storied-rivals");
         setVideos(response.data["items"]);
+        setError(null);
       } catch (err: any) {
         if (err.response?.status === 429) {
           setError(
@@ -37,41 +44,11 @@ const Page = () => {
 
   return (
     <div className="min-h-screen bg-white p-4">
-      <div className="text-center mb-12">
-          <h1 className="text-4xl md:text-5xl font-bold text-[#014321] mb-4 font-oswald">
-            STORIED RIVALS HIGHLIGHTS
-          </h1>
-          <div className="w-24 h-1 bg-[#014321] mx-auto"></div>
-        </div>
+      <PageTitle title="Storied Rivals Highlights" />
       <div className="grid gap-6 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 max-w-7xl mx-auto">
-        {videos.map((video: any, index) => {
-          const snippet = video.snippet;
-          return (
-            <a
-              key={index}
-              href={`https://www.youtube.com/watch?v=${snippet.resourceId.videoId}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="border shadow hover:bg-gray-300 transition duration-300 overflow-hidden"
-            >
-              <img
-                src={snippet.thumbnails.high.url}
-                alt={snippet.title}
-                className="w-full object-cover"
-              />
-              <div className="p-4">
-                <h2 className="text-xl font-semibold text-[#014321] mb-2">
-                  {snippet.title}
-                </h2>
-                <p className="text-sm text-gray-600">{snippet.description}</p>
-                <p className="text-xs text-gray-400 mt-2">
-                  Published:{" "}
-                  {new Date(snippet.publishedAt).toLocaleDateString()}
-                </p>
-              </div>
-            </a>
-          );
-        })}
+        {videos.map((video, index) => (
+          <VideoCard key={index} snippet={video.snippet} />
+        ))}
       </div>
     </div>
   );

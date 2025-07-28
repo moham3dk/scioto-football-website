@@ -1,8 +1,12 @@
 "use client";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Loading from "@/components/Loading";
-import Error from "@/components/Error";
+import Loading from "@/components/common/Loading";
+import Error from "@/components/common/Error";
+import PageTitle from "@/components/common/PageTitle";
+import Tabs from "@/components/common/Tabs";
+import AlumniTable from "@/components/history/AlumniTable";
+import NFLPlayerCard from "@/components/history/NFLPlayerCard";
 
 const tabs = ["History", "Alumni", "Irish in the NFL", "Records and Awards"];
 
@@ -49,9 +53,7 @@ const Page = () => {
   const [selectedTab, setSelectedTab] = useState("History");
   const [loading, setLoading] = useState(true);
   const [data, setData] = useState<Array<Array<string | number>>>([]);
-  const [alumniData, setAlumniData] = useState<Array<Array<string | number>>>(
-    []
-  );
+  const [alumniData, setAlumniData] = useState<Array<Array<string | number>>>([]);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
@@ -61,9 +63,7 @@ const Page = () => {
         setAlumniData(response.data["values"]);
       } catch (err: any) {
         if (err.response?.status === 429) {
-          setError(
-            "It seems like we've hit a rate limit. Please try again later."
-          );
+          setError("It seems like we've hit a rate limit. Please try again later.");
         } else if (err.message) {
           setError(`An error occurred: ${err.message}`);
         } else {
@@ -90,27 +90,15 @@ const Page = () => {
   return (
     <div className="min-h-screen bg-white w-full flex flex-col items-center p-4">
       <div className="w-full max-w-6xl">
-        <div className="text-center mb-6">
-          <h1 className="text-4xl md:text-5xl font-bold text-[#014321] mb-4 font-oswald">
-            {selectedTab.toUpperCase()}
-          </h1>
-          <div className="w-24 h-1 bg-[#014321] mx-auto"></div>
-        </div>
-        <div className="w-full max-w-6xl mb-12">
+        <PageTitle title={`${selectedTab} Information`} />
+
+        <div className="w-full max-w-6xl mb-12 -mt-6">
           <div className="flex justify-center gap-2 flex-wrap">
-            {tabs.map((tab) => (
-              <button
-                key={tab}
-                onClick={() => setSelectedTab(tab)}
-                className={`px-4 py-2 border-2 font-oswald uppercase transition-all ${
-                  selectedTab === tab
-                    ? "bg-[#014321] text-white border-[#014321]"
-                    : "bg-white text-[#014321] border-[#014321] hover:bg-[#014321] hover:text-white"
-                }`}
-              >
-                {tab}
-              </button>
-            ))}
+            <Tabs
+              tabs={tabs}
+              selectedTab={selectedTab}
+              onSelectTab={setSelectedTab}
+            />
           </div>
         </div>
 
@@ -119,86 +107,11 @@ const Page = () => {
         ) : error ? (
           <Error errorMessage={error} />
         ) : selectedTab === "Alumni" ? (
-          <div className="overflow-x-auto">
-            <table className="min-w-full bg-white border border-[#014321]">
-              <thead>
-                <tr className="bg-[#014321] text-white">
-                  <th className="py-3 px-4 border-b text-left">#</th>
-                  <th className="py-3 px-4 border-b text-left">First Name</th>
-                  <th className="py-3 px-4 border-b text-left">Last Name</th>
-                  <th className="py-3 px-4 border-b text-left">Grad Year</th>
-                  <th className="py-3 px-4 border-b text-left">Position</th>
-                </tr>
-              </thead>
-              <tbody>
-                {data.map((player: Array<string | number>, index) => (
-                  <tr
-                    key={index}
-                    className="hover:bg-gray-300 transition-colors"
-                  >
-                    <td className="py-2 px-4 border-b text-[#014321]">
-                      {player[0]}
-                    </td>
-                    <td className="py-2 px-4 border-b text-[#014321]">
-                      {player[1]}
-                    </td>
-                    <td className="py-2 px-4 border-b text-[#014321]">
-                      {player[2]}
-                    </td>
-                    <td className="py-2 px-4 border-b text-[#014321]">
-                      {player[3]}
-                    </td>
-                    <td className="py-2 px-4 border-b text-[#014321]">
-                      {player[4]}
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+          <AlumniTable data={data} />
         ) : selectedTab === "Irish in the NFL" ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {nflPlayers.map((player, idx) => (
-              <div
-                key={idx}
-                className="border border-[#014321] p-4 hover:bg-gray-300 transition-colors"
-              >
-                <img
-                  src={player.img}
-                  alt={player.name}
-                  className="w-full h-60 object-cover mb-4"
-                />
-                <h2 className="text-2xl font-bold text-[#014321]">
-                  <a
-                    href={player.pfr}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    {player.name}
-                  </a>
-                </h2>
-                <ul className="text-[#014321] mt-2 space-y-1">
-                  <li>
-                    <strong>Position:</strong> {player.position}
-                  </li>
-                  <li>
-                    <strong>Teams:</strong> {player.teams}
-                  </li>
-                  <li>
-                    <strong>Years:</strong> {player.years}
-                  </li>
-                  <li>
-                    <a
-                      href={player.wiki}
-                      className="text-blue-600 underline"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Wikipedia
-                    </a>
-                  </li>
-                </ul>
-              </div>
+              <NFLPlayerCard key={idx} player={player} />
             ))}
           </div>
         ) : selectedTab === "Records and Awards" ? (
