@@ -52,36 +52,48 @@ const AnnouncementsSection: React.FC = () => {
         <p className="text-red-600 font-oswald text-lg">{announcementsError}</p>
       ) : (
         <div className="flex flex-wrap justify-center gap-6 w-full max-w-6xl">
-          {announcements.map(
-            (announcement: any, index: number) =>
+          {announcements.filter(
+            (announcement: any) =>
               announcement.length > 0 &&
               announcement[0] != "" &&
               announcement[3] &&
-              new Date(announcement[3]) > new Date(Date.now()) && (
-                <div
-                  key={index}
-                  className="flex flex-col items-center p-6 border-2 border-[#014321] hover:shadow-lg transition duration-300 bg-white mx-4 w-96 h-64"
-                >
-                  <p className="text-[#014321] font-oswald text-lg text-center my-auto overflow-hidden whitespace-nowrap text-ellipsis w-full">
-                    {announcement[0]}
-                  </p>
+              new Date(announcement[3]) > new Date(Date.now())
+          ).length > 0 ? (
+            announcements.map(
+              (announcement: any, index: number) =>
+                announcement.length > 0 &&
+                announcement[0] != "" &&
+                announcement[3] &&
+                new Date(announcement[3]) > new Date(Date.now()) && (
+                  <div
+                    key={index}
+                    className="flex flex-col items-center p-6 border-2 border-[#014321] hover:shadow-lg transition duration-300 bg-white mx-4 w-96 h-64"
+                  >
+                    <p className="text-[#014321] font-oswald text-lg text-center my-auto overflow-hidden whitespace-nowrap text-ellipsis w-full">
+                      {announcement[0]}
+                    </p>
 
-                  <p className="text-[#014321] font-oswald text-sm text-center mt-2 my-auto line-clamp-3">
-                    {announcement[1]}
-                  </p>
+                    <p className="text-[#014321] font-oswald text-sm text-center mt-2 my-auto line-clamp-3">
+                      {announcement[1]}
+                    </p>
 
-                  {announcement[4] && (
-                    <a
-                      href={announcement[4]}
-                      target="_self"
-                      rel="noopener noreferrer"
-                      className="mt-4 px-6 py-2 bg-[#014321] text-white font-oswald text-sm hover:bg-[#012a1a] transition duration-300"
-                    >
-                      SEE MORE
-                    </a>
-                  )}
-                </div>
-              )
+                    {announcement[4] && (
+                      <a
+                        href={announcement[4]}
+                        target="_self"
+                        rel="noopener noreferrer"
+                        className="mt-4 px-6 py-2 bg-[#014321] text-white font-oswald text-sm hover:bg-[#012a1a] transition duration-300"
+                      >
+                        SEE MORE
+                      </a>
+                    )}
+                  </div>
+                )
+            )
+          ) : (
+            <p className="text-gray-600 font-oswald text-lg">
+              No upcoming announcements at this time.
+            </p>
           )}
         </div>
       )}
