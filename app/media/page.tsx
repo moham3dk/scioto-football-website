@@ -19,6 +19,7 @@ const Page = () => {
     const fetchVideos = async () => {
       try {
         const response = await axios.get("/api/storied-rivals");
+        console.log(response.data);
         setVideos(response.data["items"]);
         setError(null);
       } catch (err: any) {
